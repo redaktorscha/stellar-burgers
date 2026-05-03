@@ -1,5 +1,7 @@
+import { TConstructorItems } from '@utils-types';
+
 export type BurgerConstructorUIProps = {
-  constructorItems: any;
+  constructorItems: TConstructorItems;
   orderRequest: boolean;
   orderError: string | null;
   price: number;

@@ -1,5 +1,7 @@
+import { TFeedSummary } from '@utils-types';
+
 export type FeedInfoUIProps = {
-  feed: any;
+  feed: TFeedSummary;
   readyOrders: number[];
   pendingOrders: number[];
 };
