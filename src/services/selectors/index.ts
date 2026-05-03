@@ -37,3 +37,7 @@ export const selectOrderDetails = (state: RootState) =>
   state.orderDetails.order;
 export const selectOrderDetailsLoading = (state: RootState) =>
   state.orderDetails.isLoading;
+
+export const selectPasswordError = (state: RootState) => state.password.error;
+export const selectPasswordLoading = (state: RootState) =>
+  state.password.isLoading;

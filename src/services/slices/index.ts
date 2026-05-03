@@ -19,6 +19,12 @@ export {
 export { feedReducer, fetchFeed } from './feed-slice';
 export { ingredientsReducer, fetchIngredients } from './ingredients-slice';
 export {
+  clearPasswordError,
+  forgotPassword,
+  passwordReducer,
+  resetPassword
+} from './password-slice';
+export {
   clearOrderDetails,
   fetchOrderByNumber,
   orderDetailsReducer

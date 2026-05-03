@@ -11,6 +11,7 @@ import {
   feedReducer,
   ingredientsReducer,
   orderDetailsReducer,
+  passwordReducer,
   profileOrdersReducer
 } from './slices';
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   feed: feedReducer,
   profileOrders: profileOrdersReducer,
   orderDetails: orderDetailsReducer,
+  password: passwordReducer,
   auth: authReducer
 });
 
