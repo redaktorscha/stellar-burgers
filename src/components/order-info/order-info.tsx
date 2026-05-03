@@ -9,6 +9,7 @@ import {
   selectFeedOrders,
   selectIngredients,
   selectOrderDetails,
+  selectOrderDetailsError,
   selectOrderDetailsLoading,
   selectProfileOrders
 } from '../../services/selectors';
@@ -22,6 +23,7 @@ export const OrderInfo: FC = () => {
   const feedOrders = useSelector(selectFeedOrders);
   const profileOrders = useSelector(selectProfileOrders);
   const fetchedOrder = useSelector(selectOrderDetails);
+  const orderError = useSelector(selectOrderDetailsError);
   const isOrderLoading = useSelector(selectOrderDetailsLoading);
 
   const orderNumber = Number(number);
@@ -81,8 +83,23 @@ export const OrderInfo: FC = () => {
     };
   }, [orderData, ingredients]);
 
-  if (!orderInfo || isOrderLoading) {
+  if (isOrderLoading || (!orderInfo && !orderError)) {
     return <Preloader />;
+  }
+
+  if (orderError && !orderInfo) {
+    return (
+      <div
+        className='pt-10 text text_type_main-medium'
+        style={{ color: 'red' }}
+      >
+        {orderError}
+      </div>
+    );
+  }
+
+  if (!orderInfo) {
+    return null;
   }
 
   return <OrderInfoUI orderInfo={orderInfo} />;

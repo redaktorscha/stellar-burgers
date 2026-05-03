@@ -6,6 +6,7 @@ import { BurgerConstructorUI } from '@ui';
 import { useDispatch, useSelector } from '../../services/store';
 import { clearOrderModalData, createOrder } from '../../services/slices';
 import {
+  selectConstructorError,
   selectConstructorItems,
   selectOrderModalData,
   selectOrderRequest
@@ -19,6 +20,7 @@ export const BurgerConstructor: FC = () => {
   const constructorItems = useSelector(selectConstructorItems);
   const orderRequest = useSelector(selectOrderRequest);
   const orderModalData = useSelector(selectOrderModalData);
+  const orderError = useSelector(selectConstructorError);
 
   const onOrderClick = () => {
     if (!constructorItems.bun || orderRequest) return;
@@ -55,6 +57,7 @@ export const BurgerConstructor: FC = () => {
     <BurgerConstructorUI
       price={price}
       orderRequest={orderRequest}
+      orderError={orderError}
       constructorItems={constructorItems}
       orderModalData={orderModalData}
       onOrderClick={onOrderClick}

@@ -2,9 +2,13 @@ import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ResetPasswordUI } from '@ui-pages';
+import { Preloader } from '@ui';
 import { useDispatch, useSelector } from '../../services/store';
 import { clearPasswordError, resetPassword } from '../../services/slices';
-import { selectPasswordError } from '../../services/selectors';
+import {
+  selectPasswordError,
+  selectPasswordLoading
+} from '../../services/selectors';
 
 export const ResetPassword: FC = () => {
   const dispatch = useDispatch();
@@ -12,6 +16,7 @@ export const ResetPassword: FC = () => {
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
   const errorText = useSelector(selectPasswordError) || undefined;
+  const isLoading = useSelector(selectPasswordLoading);
 
   useEffect(() => {
     dispatch(clearPasswordError());
@@ -32,6 +37,10 @@ export const ResetPassword: FC = () => {
       navigate('/forgot-password', { replace: true });
     }
   }, [navigate]);
+
+  if (isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <ResetPasswordUI

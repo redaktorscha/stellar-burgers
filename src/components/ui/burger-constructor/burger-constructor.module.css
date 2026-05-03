@@ -26,6 +26,11 @@
   align-items: center;
 }
 
+.error {
+  color: #ff0000;
+  text-align: right;
+}
+
 .text {
   font-family: Iceland;
   font-style: normal;

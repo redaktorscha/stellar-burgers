@@ -9,6 +9,8 @@ export {
 } from './constructor-slice';
 export {
   authReducer,
+  clearAuthError,
+  clearUpdateUserError,
   fetchUser,
   loginUser,
   logoutUser,

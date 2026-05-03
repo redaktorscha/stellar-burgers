@@ -119,6 +119,12 @@ const authSlice = createSlice({
   reducers: {
     setAuthChecked: (state, { payload }: PayloadAction<boolean>) => {
       state.isAuthChecked = payload;
+    },
+    clearAuthError: (state) => {
+      state.error = null;
+    },
+    clearUpdateUserError: (state) => {
+      state.updateUserError = null;
     }
   },
   extraReducers: (builder) => {
@@ -159,6 +165,7 @@ const authSlice = createSlice({
       })
       .addCase(fetchUser.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -176,17 +183,24 @@ const authSlice = createSlice({
         clearTokens();
       })
       .addCase(updateUser.pending, (state) => {
+        state.isLoading = true;
         state.updateUserError = null;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.user = action.payload;
         state.updateUserError = null;
       })
       .addCase(updateUser.rejected, (state, action) => {
+        state.isLoading = false;
         state.updateUserError =
           (action.payload as string) ||
           action.error.message ||
           'Ошибка обновления профиля';
+      })
+      .addCase(logoutUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
@@ -201,6 +215,7 @@ const authSlice = createSlice({
   }
 });
 
-export const { setAuthChecked } = authSlice.actions;
+export const { clearAuthError, clearUpdateUserError, setAuthChecked } =
+  authSlice.actions;
 
 export const authReducer = authSlice.reducer;
