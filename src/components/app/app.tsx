@@ -21,18 +21,46 @@ import {
   OrderInfo,
   ProtectedRoute
 } from '@components';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from '../../services/store';
+import {
+  fetchIngredients,
+  fetchUser,
+  setAuthChecked
+} from '../../services/slices';
+import { selectIngredientsError } from '../../services/selectors';
+import { getCookie } from '../../utils/cookie';
 
 const App = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const ingredientsError = useSelector(selectIngredientsError);
   const background = (location.state as { background?: Location } | null)
     ?.background;
 
   const closeModal = () => navigate(-1);
 
+  useEffect(() => {
+    dispatch(fetchIngredients());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (getCookie('accessToken')) {
+      dispatch(fetchUser());
+    } else {
+      dispatch(setAuthChecked(true));
+    }
+  }, [dispatch]);
+
   return (
     <div className={styles.app}>
       <AppHeader />
+      {ingredientsError && (
+        <div className={`${styles.error} text text_type_main-medium pt-4`}>
+          {ingredientsError}
+        </div>
+      )}
       <Routes location={background || location}>
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
