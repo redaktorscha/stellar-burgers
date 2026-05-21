@@ -8,6 +8,7 @@ import {
   Logo,
   ProfileIcon
 } from '@zlden/react-developer-burger-ui-components';
+import clsx from 'clsx';
 
 export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
   const location = useLocation();
@@ -22,7 +23,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
             to='/'
             end
             className={({ isActive }) =>
-              `${styles.link} mr-10 ${isActive ? styles.link_active : ''}`
+              clsx(styles.link, 'mr-10', { [styles.link_active]: isActive })
             }
           >
             {({ isActive }) => (
@@ -35,7 +36,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
           <NavLink
             to='/feed'
             className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.link_active : ''}`
+              clsx(styles.link, { [styles.link_active]: isActive })
             }
           >
             {({ isActive }) => (
@@ -55,9 +56,9 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
         </div>
         <NavLink
           to='/profile'
-          className={`${styles.link} ${styles.link_position_last} ${
-            isProfileActive ? styles.link_active : ''
-          }`}
+          className={clsx(styles.link, styles.link_position_last, {
+            [styles.link_active]: isProfileActive
+          })}
         >
           <ProfileIcon type={isProfileActive ? 'primary' : 'secondary'} />
           <p className='text text_type_main-default ml-2'>
