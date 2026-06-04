@@ -75,6 +75,7 @@ export const fetchUser = createAsyncThunk(
       const response = await getUserApi();
       return response.user;
     } catch (error) {
+      clearTokens();
       return rejectWithValue(
         (error as { message?: string }).message ||
           'Не удалось получить данные пользователя'
@@ -180,7 +181,6 @@ const authSlice = createSlice({
           (action.payload as string) ||
           action.error.message ||
           'Не удалось получить данные пользователя';
-        clearTokens();
       })
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true;
