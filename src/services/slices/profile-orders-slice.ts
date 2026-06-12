@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getOrdersApi } from '../../utils/burger-api';
 import { TOrder } from '../../utils/types';
 
-type TProfileOrdersState = {
+export type TProfileOrdersState = {
   orders: TOrder[];
   isLoading: boolean;
   error: string | null;

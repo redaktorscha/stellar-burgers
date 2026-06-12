@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { forgotPasswordApi, resetPasswordApi } from '../../utils/burger-api';
 
-type TPasswordState = {
+export type TPasswordState = {
   isLoading: boolean;
   error: string | null;
 };

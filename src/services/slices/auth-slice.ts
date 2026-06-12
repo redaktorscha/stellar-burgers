@@ -12,7 +12,7 @@ import {
 import { deleteCookie, setCookie } from '../../utils/cookie';
 import { TUser } from '../../utils/types';
 
-type TAuthState = {
+export type TAuthState = {
   user: TUser | null;
   isAuthChecked: boolean;
   isLoading: boolean;
