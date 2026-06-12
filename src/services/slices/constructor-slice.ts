@@ -8,7 +8,7 @@ type TCreatedOrder = {
   number: number;
 };
 
-type TConstructorState = {
+export type TConstructorState = {
   constructorItems: {
     bun: TIngredient | null;
     ingredients: TConstructorIngredient[];
