@@ -6,12 +6,11 @@ import {
   passwordReducer
 } from '../slices/password-slice';
 
-const initialState: TPasswordState = {
-  isLoading: false,
-  error: null
-};
-
 describe('password slice', () => {
+  const initialState: TPasswordState = {
+    isLoading: false,
+    error: null
+  };
   it('должен вернуть начальное состояние при неизвестном экшене', () => {
     const newState = passwordReducer(undefined, { type: 'UNKNOWN_ACTION' });
     expect(newState).toEqual(initialState);

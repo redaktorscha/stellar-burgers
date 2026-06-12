@@ -6,34 +6,33 @@ import {
 } from '../slices/profile-orders-slice';
 import { TOrder } from '../../utils/types';
 
-const initialState: TProfileOrdersState = {
-  orders: [],
-  isLoading: false,
-  error: null
-};
-
-const mockOrders: TOrder[] = [
-  {
-    _id: 'order1',
-    status: 'done',
-    name: 'Мой бургер 1',
-    createdAt: '2025-01-01T10:00:00Z',
-    updatedAt: '2025-01-01T10:05:00Z',
-    number: 123,
-    ingredients: ['ing1', 'ing2']
-  },
-  {
-    _id: 'order2',
-    status: 'pending',
-    name: 'Мой бургер 2',
-    createdAt: '2025-01-02T12:00:00Z',
-    updatedAt: '2025-01-02T12:10:00Z',
-    number: 124,
-    ingredients: ['ing3']
-  }
-];
-
 describe('profileOrders slice', () => {
+  const initialState: TProfileOrdersState = {
+    orders: [],
+    isLoading: false,
+    error: null
+  };
+
+  const mockOrders: TOrder[] = [
+    {
+      _id: 'order1',
+      status: 'done',
+      name: 'Мой бургер 1',
+      createdAt: '2025-01-01T10:00:00Z',
+      updatedAt: '2025-01-01T10:05:00Z',
+      number: 123,
+      ingredients: ['ing1', 'ing2']
+    },
+    {
+      _id: 'order2',
+      status: 'pending',
+      name: 'Мой бургер 2',
+      createdAt: '2025-01-02T12:00:00Z',
+      updatedAt: '2025-01-02T12:10:00Z',
+      number: 124,
+      ingredients: ['ing3']
+    }
+  ];
   it('должен вернуть начальное состояние при неизвестном экшене', () => {
     const newState = profileOrdersReducer(undefined, {
       type: 'UNKNOWN_ACTION'
